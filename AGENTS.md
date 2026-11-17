@@ -12,7 +12,7 @@ Project summary lives in: `~/Desktop/AI/ai-os/10_context/projects/rockstar-gta-h
 - What it is: "Grand Theft Archive" — every GTA game (1997–2026) on a 3D shelf, each in its original console packaging. Cases open on a hinge to show media, period screenshots and a production file. GTA VI is the hero: set apart, glowing, live countdown, official Rockstar gallery instead of a disc.
 - Tech stack: Vite + plain JavaScript (ES modules), CSS 3D transforms, Web Animations API. No framework.
 - How to run it: `npm install` then `npm run dev` (port 5173).
-- How to deploy it: not deployed yet. `npm run build` outputs `dist/` (static, any host works).
+- How to deploy it: live at https://rockstar-gta-history.vercel.app (Vercel team hamzeh75s-projects). Every push to `main` on GitHub (HamzehGhoreyshi/rockstar-gta-history) redeploys automatically.
 - Rules specific to this project:
   - Portfolio link: the page footer shows `https://hamzeh.framer.ai/?utm_source=rockstar-gta-history&utm_medium=referral`. Check it is there before every deploy.
   - Facts must be verified (Wikipedia infobox / Metacritic via Wikipedia / rockstargames.com). Unknown = `null`, never invented.

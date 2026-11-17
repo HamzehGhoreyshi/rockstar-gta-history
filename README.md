@@ -11,6 +11,8 @@ npm run dev      # http://localhost:5173
 npm run build    # static site in dist/
 ```
 
+Live: https://rockstar-gta-history.vercel.app · pushes to `main` deploy automatically.
+
 ## Languages
 
 English (default) and Persian. Add `?lang=fa` to the address or use the flag menu. Persian uses the Ravi font
