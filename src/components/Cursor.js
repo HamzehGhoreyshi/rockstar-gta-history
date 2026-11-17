@@ -15,6 +15,16 @@ export class Cursor {
       h('span', { class: 'cursor__label' }, 'Open')
     );
     document.body.append(this.el);
+
+    // A modal <dialog> (image viewer, About) is drawn in the browser's top layer, above every
+    // z-index on the page — so the cursor has to live inside the open dialog to stay visible.
+    const rehome = () => {
+      const open = [...document.querySelectorAll('dialog[open]')].pop();
+      const host = open || document.body;
+      if (this.el.parentElement !== host) host.append(this.el);
+    };
+    new MutationObserver(rehome).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open'] });
+
     this.x = this.tx = window.innerWidth / 2;
     this.y = this.ty = window.innerHeight / 2;
     this.override = null;
