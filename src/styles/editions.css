@@ -1,0 +1,140 @@
+/* ============================================================
+   Console editions — packaging per platform, plus non-disc media
+   ============================================================ */
+
+/* ---------- Plastic / material per edition ---------- */
+.case--ps1  { --plastic: #c8ccd4; --plastic-dark: #8d929c; --plastic-hi: #eef1f6; --band-bg: #0d0d0f; --band-fg: #fff; }
+.case--ps2  { --plastic: #1b1b1e; --plastic-dark: #0c0c0e; --plastic-hi: #3a3a40; --band-bg: #0b0b0d; --band-fg: #e9eef7; }
+.case--gba  { --plastic: #e8dfcb; --plastic-dark: #b9ad93; --plastic-hi: #fff8e8; --band-bg: #4b2a8a; --band-fg: #fff; }
+.case--psp  { --plastic: #2c3036; --plastic-dark: #16181b; --plastic-hi: #5a6069; --band-bg: #0b0b0d; --band-fg: #fff; }
+.case--ds   { --plastic: #e6e7ea; --plastic-dark: #b3b6bd; --plastic-hi: #ffffff; --band-bg: #f2f2f2; --band-fg: #3a3a3a; }
+.case--ps3  { --plastic: #24477f; --plastic-dark: #13284c; --plastic-hi: #5d86c9; --band-bg: linear-gradient(180deg, #2a2a2a, #050505); --band-fg: #d9dde3; }
+.case--x360 { --plastic: #1f7a2c; --plastic-dark: #0f4a18; --plastic-hi: #5cc26a; --band-bg: linear-gradient(90deg, #0e6b12, #5dc21e); --band-fg: #fff; }
+.case--ps5  { --plastic: #2a63d6; --plastic-dark: #173d93; --plastic-hi: #6fa0ff; --band-bg: #f4f4f2; --band-fg: #0a0a0a; }
+
+/* Cardboard box (GBA) has matte edges, not glossy plastic */
+.case--gba .face--edge, .case--gba .face--top, .case--gba .face--bottom {
+  background: linear-gradient(180deg, #f3ecda, #d8ccb0);
+}
+.case--gba .plastic-gloss { opacity: .35; }
+
+/* ---------- Console marks ---------- */
+.ps-mark { font-family: var(--f-sans); font-weight: 700; letter-spacing: .02em; line-height: 1; white-space: nowrap; }
+.ps-mark--ps1 { font-style: italic; letter-spacing: -.01em; }
+.ps-mark--ps2 { font-weight: 500; letter-spacing: .04em; }
+.ps-mark--ps3, .ps-mark--ps5 { font-style: italic; letter-spacing: -.02em; }
+.ps-mark--psp { letter-spacing: .3em; }
+.ps-mark--ds, .ps-mark--gba { letter-spacing: .12em; font-weight: 800; }
+.ps-mark--x360 { letter-spacing: .14em; font-weight: 800; }
+
+/* ---------- Cover bands ---------- */
+.sleeve__band {
+  position: absolute; z-index: 1;
+  display: flex; align-items: center;
+  background: var(--band-bg); color: var(--band-fg);
+}
+.sleeve__band--top { left: 0; right: 0; top: 0; height: calc(var(--h) * .072); padding: 0 7%; }
+.sleeve__band--left {
+  left: 0; top: 0; bottom: 0; width: calc(var(--w) * .12);
+  justify-content: center;
+  writing-mode: vertical-rl; transform: rotate(180deg);
+}
+.sleeve__band--top .ps-mark { font-size: calc(var(--h) * .034); }
+.sleeve__band--left .ps-mark { font-size: calc(var(--w) * .052); }
+.sleeve__band--ds { box-shadow: inset 0 -1px 0 rgba(0,0,0,.15); }
+.face--back .sleeve__band { opacity: .9; }
+
+.cover-img--contain { object-fit: contain; background: #0b0b0b; padding: 18%; }
+.case--gba .cover-img--contain { background: radial-gradient(circle at 50% 40%, #3b2470, #120a22); }
+
+/* Spine head shows the year, in the band colours */
+.spine__head { background: var(--band-bg); color: var(--band-fg); font-family: var(--f-display); font-size: calc(var(--d) * .5); letter-spacing: .02em; }
+.case--ps1 .face--spine { box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), inset 3px 0 0 rgba(255,255,255,.12); }
+
+/* ---------- Disc variants ---------- */
+.disc__band { background: var(--band-bg); color: var(--band-fg); }
+.disc__band .ps-mark { font-size: calc(var(--size) * .045); }
+.disc--cd .disc__under { background: conic-gradient(from 30deg, #1b1b20, #3a3a44, #121216, #44444f, #18181c, #3a3a44, #1b1b20); } /* PS1 black disc */
+.disc--bd .disc__under { background: conic-gradient(from 30deg, #8592b0, #e6ecfa, #8d9bbd, #f0f4ff, #7e8bab, #dfe6f8, #8592b0); }
+.case--ps1 .disc { --size: calc(var(--w) * .82); }
+
+/* ---------- PSP UMD ---------- */
+.umd {
+  position: absolute; left: 50%; top: 50%;
+  width: calc(var(--w) * .66); aspect-ratio: 64 / 65;
+  translate: -50% -50%;
+  transform-style: preserve-3d;
+  transform: translateZ(4px);
+}
+.umd__shell {
+  position: absolute; inset: 0; overflow: hidden;
+  border-radius: 46% 46% 10% 10% / 40% 40% 8% 8%;
+  background: linear-gradient(160deg, rgba(255,255,255,.55), rgba(190,200,215,.35) 40%, rgba(120,130,150,.5));
+  box-shadow: 0 8px 22px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.4);
+}
+.umd__label {
+  position: absolute; left: 6%; right: 6%; top: 5%; height: 46%;
+  border-radius: 44% 44% 4% 4% / 50% 50% 6% 6%;
+  background: var(--art) center 30% / cover;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 6%;
+}
+.umd__mark { font-size: calc(var(--w) * .04); font-weight: 800; letter-spacing: .2em; color: #fff; text-shadow: 0 1px 4px #000; }
+.umd__title { font-family: var(--f-display); font-size: calc(var(--w) * .06); color: #fff; text-shadow: 0 1px 6px #000; }
+.umd__window {
+  position: absolute; left: 50%; bottom: 7%; width: 62%; aspect-ratio: 1; translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, transparent 0 14%, rgba(0,0,0,.35) 15%, transparent 16%);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.35);
+  overflow: hidden;
+}
+.umd__disc {
+  position: absolute; inset: 6%; border-radius: 50%;
+  background: conic-gradient(from 20deg, #b8bfcc, #ffffff, #9aa3b4, #f2f4f9, #a6aebd, #ffffff, #b8bfcc);
+  -webkit-mask: radial-gradient(circle closest-side, transparent 0 22%, #000 23%); mask: radial-gradient(circle closest-side, transparent 0 22%, #000 23%);
+  animation: umdSpin 12s linear infinite;
+}
+@keyframes umdSpin { to { transform: rotate(360deg); } }
+
+/* ---------- Cartridges (GBA / DS) ---------- */
+.cart {
+  position: absolute; left: 50%; top: 50%;
+  translate: -50% -50%;
+  transform-style: preserve-3d;
+  transform: translateZ(4px);
+}
+.cart--gba { width: calc(var(--w) * .66); aspect-ratio: 57 / 35; }
+.cart--ds  { width: calc(var(--w) * .46); aspect-ratio: 35 / 33; }
+.cart__body {
+  position: absolute; inset: 0; overflow: hidden;
+  border-radius: 6px 6px 3px 3px;
+  background: linear-gradient(180deg, #7a7d84, #4d5057);
+  box-shadow: 0 10px 22px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.cart--gba .cart__body { border-radius: 10px 10px 4px 4px; }
+.cart--ds .cart__body { background: linear-gradient(180deg, #3b3d42, #1d1e21); }
+.cart__label {
+  position: absolute; left: 9%; right: 9%; top: 9%; bottom: 26%;
+  border-radius: 3px;
+  background: var(--art) center 35% / cover;
+  display: flex; align-items: flex-end; padding: 5%;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.3);
+}
+.cart__title { font-family: var(--f-display); font-size: calc(var(--w) * .045); color: #fff; text-shadow: 0 1px 5px #000; }
+.cart__mark { position: absolute; left: 9%; bottom: 7%; color: rgba(255,255,255,.7); }
+.cart__mark .ps-mark { font-size: calc(var(--w) * .024); }
+.cart__ridges { position: absolute; right: 7%; bottom: 8%; width: 22%; height: 10%; background: repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 5px); }
+
+/* Non-disc trays: a moulded clip instead of a spindle */
+.case__tray--umd, .case__tray--gba, .case__tray--ds { background: radial-gradient(120% 90% at 30% 20%, var(--plastic-hi), var(--plastic) 50%, var(--plastic-dark)); }
+.case__tray--gba { background: linear-gradient(160deg, #f6efdd, #d9cdb1); }
+
+/* ---------- Inner sleeve: a period screenshot printed as an insert ---------- */
+.inner-art--print { background-size: cover; background-position: center; filter: saturate(1.05) contrast(1.05); }
+.lid__inner--pixel .inner-art--print { image-rendering: pixelated; }
+.inner-art--print::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.1) 30%, rgba(0,0,0,.78));
+}
+
+/* Thick cardboard spine: smaller type so long titles fit */
+.case--gba .spine__title { font-size: calc(var(--d) * .4); }

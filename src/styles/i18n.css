@@ -1,0 +1,114 @@
+/* ============================================================
+   Persian (RTL) · language switch · footer signature
+   ============================================================ */
+
+/* Ravi (Persian) is served from my separate font site so the font files stay out of this repo. */
+@font-face { font-family: "Ravi"; font-weight: 400; font-display: swap; src: url("https://word-capsule-fonts.vercel.app/Ravi-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Ravi"; font-weight: 500; font-display: swap; src: url("https://word-capsule-fonts.vercel.app/Ravi-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Ravi"; font-weight: 600; font-display: swap; src: url("https://word-capsule-fonts.vercel.app/Ravi-SemiBold.woff2") format("woff2"); }
+@font-face { font-family: "Ravi"; font-weight: 700; font-display: swap; src: url("https://word-capsule-fonts.vercel.app/Ravi-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Ravi"; font-weight: 900; font-display: swap; src: url("https://word-capsule-fonts.vercel.app/Ravi-Black.woff2") format("woff2"); }
+
+/* Latin text keeps Bebas / Space Grotesk; Persian letters fall through to Ravi. */
+:root {
+  --f-display: 'Bebas Neue', 'Ravi', 'Impact', sans-serif;
+  --f-sans: 'Space Grotesk', 'Ravi', system-ui, sans-serif;
+  --f-serif: 'Instrument Serif', 'Ravi', Georgia, serif;
+}
+html[lang='fa'] {
+  --f-sans: 'Ravi', 'Space Grotesk', system-ui, sans-serif;
+  --f-serif: 'Ravi', 'Instrument Serif', serif;
+}
+/* Letter-spacing breaks the joins between Persian letters */
+html[lang='fa'] body :not([lang='en']):not([lang='en'] *) { letter-spacing: 0 !important; }
+html[lang='fa'] .caption__hint,
+html[lang='fa'] .details__desc,
+html[lang='fa'] .vi-story__text,
+html[lang='fa'] .vi-line { font-style: normal; }
+html[lang='fa'] .details__desc, html[lang='fa'] .vi-story__text { font-weight: 400; line-height: 1.75; font-size: clamp(17px, 1.6vw, 21px); }
+html[lang='fa'] .vi-line { font-size: clamp(17px, 1.9vw, 24px); }
+/* Persian headings use Ravi Black instead of the condensed Latin display face */
+html[lang='fa'] .production__head h3,
+html[lang='fa'] .memories__head h3,
+html[lang='fa'] .vi-gallery-head h3,
+html[lang='fa'] .vi-title,
+html[lang='fa'] .about h2 { font-family: 'Ravi', sans-serif; font-weight: 900; line-height: 1.25; }
+html[lang='fa'] .vi-title { font-size: clamp(44px, 9vw, 120px); line-height: 1.2; }
+html[lang='fa'] .fact__value { font-family: 'Ravi', sans-serif; font-weight: 700; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.35; }
+html[lang='fa'] .fact.is-unknown .fact__value { font-size: 18px; }
+html[lang='fa'] .fact__note, html[lang='fa'] .details__row dd { line-height: 1.6; }
+html[lang='fa'] .caption__meta, html[lang='fa'] .fact__label, html[lang='fa'] .details__row dt,
+html[lang='fa'] .vi-stat span, html[lang='fa'] .countdown__u, html[lang='fa'] .countdown__label { font-size: 12px; }
+html[lang='fa'] .inner-print__title { font-family: var(--f-display); }
+html[lang='fa'] .details__features li { padding-left: 0; padding-right: 20px; }
+html[lang='fa'] .details__features li::before { left: auto; right: 0; }
+.countdown__n { font-family: var(--f-display); }
+html[lang='fa'] .countdown__n, html[lang='fa'] .header__count-n, html[lang='fa'] .score { font-family: 'Ravi', sans-serif; font-weight: 900; }
+html[lang='fa'] .header__count-n { font-size: 30px; line-height: 1; }
+html[lang='fa'] .score-card__n .score { font-size: 54px; line-height: 1; }
+
+/* ---------- Header tools + language switch (dark version of the flag pill) ---------- */
+.header__tools { display: flex; align-items: center; gap: 16px; }
+.lang { position: relative; flex: none; }
+.lang-btn {
+  height: 36px; display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 0 10px 0 12px;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(255, 255, 255, .04); color: var(--ink-dim);
+  transition: border-color .2s, background .2s;
+}
+.lang-btn:hover { border-color: var(--ink-faint); background: rgba(255, 255, 255, .07); }
+.lang-btn .chev { display: block; width: 14px; height: 14px; transition: transform .3s; }
+.lang-btn .chev svg { display: block; }
+.lang.open .lang-btn .chev { transform: rotate(180deg); }
+.flag { width: 21px; height: 15px; flex: none; display: block; }
+.flag svg { width: 100%; height: 100%; display: block; border-radius: 3px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .12); }
+.lang-menu {
+  position: absolute; top: 44px; inset-inline-end: 0; width: 172px; z-index: 40;
+  padding: 6px; border-radius: 14px;
+  background: #1a1420; border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, .6);
+  opacity: 0; transform: translateY(-6px) scale(.98); pointer-events: none; visibility: hidden;
+  transition: opacity .22s ease, transform .32s cubic-bezier(.2, .8, .2, 1), visibility .32s;
+}
+.lang.open .lang-menu { opacity: 1; transform: none; pointer-events: auto; visibility: visible; }
+.lang-item {
+  width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px;
+  border-radius: 9px; font-size: 14px; font-weight: 600; color: var(--ink); text-align: start;
+}
+.lang-item[lang='fa'] { font-family: 'Ravi', sans-serif; }
+.lang-item:hover { background: rgba(255, 255, 255, .06); }
+.lang-item.on { background: rgba(255, 255, 255, .09); }
+.lang-item.on::after { content: '✓'; margin-inline-start: auto; font-size: 13px; color: var(--pink); }
+
+/* ---------- Footer signature (same layout as the other projects) ---------- */
+.sig {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px;
+  margin: 0 var(--gutter); padding: 12px 0 16px;
+  border-top: 1px solid var(--line);
+  white-space: nowrap; font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 12px; line-height: 1; color: var(--ink-faint);
+  position: relative; z-index: 3;
+}
+.sig a { display: inline-flex; align-items: center; gap: 6px; height: 20px; color: inherit; text-decoration: none; border-radius: 6px; transition: opacity .2s, color .2s; }
+.sig a:hover { color: var(--ink); }
+.sig strong { color: var(--ink-dim); font-weight: 600; }
+.sig a:hover strong { color: var(--ink); }
+.sig .ico { display: inline-flex; }
+.sig svg { display: block; flex: none; width: 13px; height: 13px; fill: var(--ink-dim); }
+.sig .star-icon { fill: #f5a03a; }
+.sig .star-count { color: var(--ink-dim); font-weight: 600; font-variant-numeric: tabular-nums; }
+.sig .start { justify-self: start; }
+.sig .mid { justify-self: center; display: inline-flex; align-items: center; height: 20px; }
+.sig .end { justify-self: end; display: inline-flex; align-items: center; gap: 10px; height: 20px; }
+.sig .dot { opacity: .5; }
+
+@media (max-width: 640px) {
+  .sig { grid-template-columns: 1fr; justify-items: center; gap: 8px; padding: 12px 0 max(14px, env(safe-area-inset-bottom)); }
+  .sig .start, .sig .mid, .sig .end { justify-self: center; }
+  .header__tools { gap: 10px; }
+}
+
+/* English titles inside Persian pages still line up on the right */
+html[lang='fa'] .details__title, html[lang='fa'] .caption__title { text-align: right; justify-content: flex-end; }
+html[lang='fa'] .details__title .mask-text, html[lang='fa'] .caption__title .mask-text { justify-content: flex-end; }
+html[lang='fa'] .score-card__n { justify-content: flex-end; }
