@@ -1,5 +1,7 @@
 # Grand Theft Archive — every GTA, 1997–2026
 
+<a href="https://rockstar-gta-history.vercel.app"><img src="docs/demo.gif" width="100%" alt="The shelf moves from GTA IV through Chinatown Wars and Episodes from Liberty City to GTA V. GTA V's PS3 case opens to show its disc, closes, then the glowing GTA VI case is pulled out and opened, and the page scrolls through Vice City: the launch countdown, the production file, Lucia and Jason, and the launch gallery."></a>
+
 The whole Grand Theft Auto series on one 3D shelf. Each game sits in the packaging of the console
 it was made for: PS1 jewel case, PS2 DVD case, GBA box, PSP UMD case, DS case, PS3, Xbox 360, PS5.
 Pull a case out, open it, and see the disc or cartridge, real period screenshots, and a production file
@@ -32,6 +34,19 @@ game text in Persian: `src/data/games.fa.js`.
 | GTA VI | `src/components/GtaShowcase.js` | Official Rockstar gallery instead of a disc + Vice City section. |
 | Countdown | `src/components/Countdown.js` | Live days/hours/min/sec to GTA VI's local-midnight unlock. |
 | i18n | `src/i18n.js`, `src/data/games.fa.js` | English/Persian strings, flags, digits. |
+
+## Record the video
+
+`tools/record.mjs` films the walkthrough frame by frame at 60 fps (the page's clock is driven by the script, so no frame is dropped). A real mouse drives the site's own cursor. Needs Google Chrome and ffmpeg.
+
+```bash
+npm run build
+npm i --no-save puppeteer-core
+node tools/record.mjs exports/grand-theft-archive-16x9.mp4 1280 720 1920
+node tools/record.mjs exports/grand-theft-archive-9x16.mp4 432 768 1080
+```
+
+Arguments: output file, page width, page height, video width. Add `fa` at the end for Persian.
 
 ## Sources and honesty rules
 
